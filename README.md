@@ -1,6 +1,6 @@
 # Linux Ansible Test Image
 
-[![Build](https://github.com/lacrif/docker-linux-ansible/actions/workflows/build.yml/badge.svg)](https://github.com/lacrif/docker-linux-ansible/actions/workflows/build.yml) [![Docker pulls](https://img.shields.io/docker/pulls/lacrif/docker-linux-ansible)](https://hub.docker.com/r/lacrif/docker-linux-ansible/)
+[![CI](https://github.com/lacrif/docker-linux-ansible/actions/workflows/ci.yml/badge.svg)](https://github.com/lacrif/docker-linux-ansible/actions/workflows/ci.yml) [![Docker pulls](https://img.shields.io/docker/pulls/lacrif/docker-linux-ansible)](https://hub.docker.com/r/lacrif/docker-linux-ansible/)
 
 Linux Docker container for Ansible playbook and role testing.
 
