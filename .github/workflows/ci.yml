@@ -33,9 +33,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: 'Build and push image'
-        uses: 'docker/build-push-action@v2'
+        uses: 'docker/build-push-action@v6'
         with:
-          context: './Dockerfiles/${{ matrix.os }}/${{ matrix.version }}/'
+          context: '{{defaultContext}}:Dockerfiles/${{ matrix.os }}/${{ matrix.version }}/'
           file: 'Dockerfile'
           platforms: 'linux/amd64,linux/arm64'
           push: true
