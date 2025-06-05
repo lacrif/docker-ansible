@@ -1,28 +1,14 @@
-# Rocky Linux 9 Ansible Test Image
+# Linux Ansible Test Image
 
-[![Build](https://github.com/lacrif/docker-rockylinux9-ansible/actions/workflows/build.yml/badge.svg)](https://github.com/lacrif/docker-rockylinux9-ansible/actions/workflows/build.yml) [![Docker pulls](https://img.shields.io/docker/pulls/lacrif/docker-rockylinux9-ansible)](https://hub.docker.com/r/lacrif/docker-rockylinux9-ansible/)
+[![Build](https://github.com/lacrif/docker-linux-ansible/actions/workflows/build.yml/badge.svg)](https://github.com/lacrif/docker-linux-ansible/actions/workflows/build.yml) [![Docker pulls](https://img.shields.io/docker/pulls/lacrif/docker-linux-ansible)](https://hub.docker.com/r/lacrif/docker-linux-ansible/)
 
-Rocky Linux 9 Docker container for Ansible playbook and role testing.
-
-## Tags
-
-  - `latest`: Latest stable version of Ansible.
-
-The latest tag is a lightweight image for basic validation of Ansible playbooks.
-
-## How to Build
-
-This image is built on Docker Hub automatically any time the upstream OS container is rebuilt, and any time a commit is made or merged to the `master` branch. But if you need to build the image on your own locally, do the following:
-
-  1. [Install Docker](https://docs.docker.com/engine/installation/).
-  2. `cd` into this directory.
-  3. Run `docker build -t rockylinux9-ansible .`
+Linux Docker container for Ansible playbook and role testing.
 
 ## How to Use
 
   1. [Install Docker](https://docs.docker.com/engine/installation/).
-  2. Pull this image from Docker Hub: `docker pull lacrif/docker-rockylinux9-ansible:latest` (or use the image you built earlier, e.g. `rockylinux9-ansible:latest`).
-  3. Run a container from the image: `docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw --cgroupns=host lacrif/docker-rockylinux9-ansible:latest` (to test my Ansible roles, I add in a volume mounted from the current working directory with ``--volume=`pwd`:/etc/ansible/roles/role_under_test:ro``).
+  2. Pull this image from Docker Hub: `docker pull lacrif/docker-<os>-ansible:<version>`
+  3. Run a container from the image: `docker run --detach --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw --cgroupns=host lacrif/docker-<os>-ansible:<version>` (to test my Ansible roles, I add in a volume mounted from the current working directory with ``--volume=`pwd`:/etc/ansible/roles/role_under_test:ro``).
   4. Use Ansible inside the container:
     a. `docker exec --tty [container_id] env TERM=xterm ansible --version`
     b. `docker exec --tty [container_id] env TERM=xterm ansible-playbook /path/to/ansible/playbook.yml --syntax-check`

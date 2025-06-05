@@ -2,8 +2,6 @@ FROM rockylinux:9
 LABEL maintainer="Lacrif"
 ENV container=docker
 
-ENV pip_packages="ansible"
-
 # Install systemd -- See https://hub.docker.com/_/centos/
 RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
 rm -f /etc/systemd/system/*.wants/*;\
@@ -33,7 +31,7 @@ RUN yum -y install rpm dnf-plugins-core \
 RUN pip3 install --upgrade pip
 
 # Install Ansible via Pip.
-RUN pip3 install $pip_packages
+RUN pip3 install ansible
 
 # Disable requiretty.
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/' /etc/sudoers

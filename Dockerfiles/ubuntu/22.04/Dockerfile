@@ -3,8 +3,6 @@ LABEL maintainer="Lacrif"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV pip_packages "ansible"
-
 # Install dependencies.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -29,7 +27,7 @@ RUN sed -i 's/^\($ModLoad imklog\)/#\1/' /etc/rsyslog.conf
 RUN locale-gen en_US.UTF-8
 
 # Install Ansible via Pip.
-RUN pip3 install $pip_packages
+RUN pip3 install ansible
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
