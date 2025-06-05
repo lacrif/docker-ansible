@@ -14,8 +14,6 @@ jobs:
       matrix:
         include:
           - os: 'rockylinux'
-            version: '8'
-          - os: 'rockylinux'
             version: '9'
           - os: 'ubuntu'
             version: '22.04'
