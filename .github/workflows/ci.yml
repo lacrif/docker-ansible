@@ -11,16 +11,19 @@ on:
 
 jobs:
   release:
-    name: Release
-    runs-on: ubuntu-latest
+    name: 'Release'
+    runs-on: 'ubuntu-latest'
     strategy:
       matrix:
         include:
-          - os: "rockylinux"
-            version: 8
-          - os: "rockylinux"
-            version: 9
-
+          - os: 'rockylinux'
+            version: '8'
+          - os: 'rockylinux'
+            version: '9'
+          - os: 'ubuntu'
+            version: '22.04'
+          - os: 'ubuntu'
+            version: '24.04'
     steps:
       - uses: 'actions/checkout@v2'
       - uses: 'docker/setup-qemu-action@v1'
