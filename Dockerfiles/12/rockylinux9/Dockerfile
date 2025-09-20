@@ -34,14 +34,16 @@ RUN yum -y install rpm dnf-plugins-core \
       which \
       hostname \
       libyaml \
-      python3 \
-      python3-pip \
-      python3-pyyaml \
+      python3.12 \
+      python3.12-pip \
+      python3.12-pyyaml \
       iproute \
  && yum clean all
 
-# Upgrade pip to latest version.
-RUN pip3 install --upgrade pip
+# Change Python version
+RUN rm /usr/bin/python3 \
+ && ln -s /usr/bin/python3.12 /usr/bin/python3 \
+ && ln -s /usr/bin/pip3.12 /usr/bin/pip3
 
 # Install Ansible via Pip.
 RUN pip3 install "ansible~=12.0"

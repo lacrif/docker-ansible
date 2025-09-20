@@ -1,5 +1,3 @@
-ARG ANSIBLE_VERSION=">11, <12"
-
 FROM ubuntu:24.04
 
 # Metadata
@@ -11,9 +9,6 @@ LABEL org.opencontainers.image.vendor="Lacrif" \
     org.opencontainers.image.version="11" \
     org.opencontainers.image.documentation="https://docs.ansible.com/"
 
-ENV container=docker
-
-ARG ANSIBLE_VERSION
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies.
