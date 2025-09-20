@@ -35,4 +35,4 @@ jobs:
           file: 'Dockerfile'
           platforms: 'linux/amd64,linux/arm64'
           push: true
-          tags: 'lacrif/docker-${{ matrix.os }}-ansible:${{ matrix.version }}'
+          tags: 'lacrif/docker-ansible:11-${{ matrix.os }}${{ matrix.version }}'

@@ -1,6 +1,19 @@
-FROM ubuntu:24.04
-LABEL maintainer="Lacrif"
+ARG ANSIBLE_VERSION=">11, <12"
 
+FROM ubuntu:24.04
+
+# Metadata
+LABEL org.opencontainers.image.vendor="Lacrif" \
+    org.opencontainers.image.url="https://docs.ansible.com/" \
+    org.opencontainers.image.source="https://github.com/lacrif/docker-linux-ansible" \
+    org.opencontainers.image.title="Ansible" \
+    org.opencontainers.image.description="Ansible is a suite of software tools that enables infrastructure as code." 
+    org.opencontainers.image.version="11" \
+    org.opencontainers.image.documentation="https://docs.ansible.com/"
+
+ENV container=docker
+
+ARG ANSIBLE_VERSION
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies.
