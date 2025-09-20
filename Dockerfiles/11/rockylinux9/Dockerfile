@@ -44,7 +44,7 @@ RUN yum -y install rpm dnf-plugins-core \
 RUN pip3 install --upgrade pip
 
 # Install Ansible via Pip.
-RUN pip3 install "ansible>=11, <12"
+RUN pip3 install "ansible~=11.0"
 
 # Disable requiretty.
 RUN sed -i -e 's/^\(Defaults\s*requiretty\)/#--- \1/' /etc/sudoers
