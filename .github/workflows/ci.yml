@@ -31,7 +31,7 @@ jobs:
       - name: 'Build and push image'
         uses: 'docker/build-push-action@v6'
         with:
-          context: '{{defaultContext}}:Dockerfiles/${{ matrix.os }}/'
+          context: '{{defaultContext}}:Dockerfiles/${{ matrix.version }}/${{ matrix.os }}/'
           file: 'Dockerfile'
           platforms: 'linux/amd64,linux/arm64'
           push: true
