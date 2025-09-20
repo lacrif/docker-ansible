@@ -14,9 +14,13 @@ jobs:
       matrix:
         include:
           - os: 'rockylinux9'
-            version: ['11','12']
+            version: '11'
           - os: 'ubuntu24.04'
-            version: ['11','12']
+            version: '11'
+          - os: 'rockylinux9'
+            version: '12'
+          - os: 'ubuntu24.04'
+            version: '12'
     steps:
       - uses: 'actions/checkout@v2'
       - uses: 'docker/setup-qemu-action@v1'
