@@ -1,8 +1,7 @@
 # Linux Image Ansible
 
-[![CI](https://github.com/lacrif/docker-linux-ansible/actions/workflows/ci.yml/badge.svg)](https://github.com/lacrif/docker-linux-ansible/actions/workflows/ci.yml) 
-[![Docker Rockylinux pulls](https://img.shields.io/docker/pulls/lacrif/docker-rockylinux-ansible)](https://hub.docker.com/r/lacrif/docker-rockylinux-ansible/)
-[![Docker Ubuntu pulls](https://img.shields.io/docker/pulls/lacrif/docker-ubuntu-ansible)](https://hub.docker.com/r/lacrif/docker-ubuntu-ansible/)
+[![CI](https://github.com/lacrif/docker-ansible/actions/workflows/ci.yml/badge.svg)](https://github.com/lacrif/docker-ansible/actions/workflows/ci.yml) 
+[![Docker pulls](https://img.shields.io/docker/pulls/lacrif/docker-ansible)](https://hub.docker.com/r/lacrif/docker-ansible/)
 
 ## Description
 
