@@ -1,5 +1,5 @@
 # Utiliser l'image slim pour réduire la taille de base (~200MB -> ~80MB)
-FROM ubuntu:24.04-slim
+FROM ubuntu:24.04
 
 # Metadata (inchangé)
 LABEL org.opencontainers.image.vendor="Lacrif" \
