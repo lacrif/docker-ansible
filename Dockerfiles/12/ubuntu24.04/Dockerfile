@@ -7,7 +7,7 @@ LABEL org.opencontainers.image.vendor="Lacrif" \
     org.opencontainers.image.source="https://github.com/lacrif/docker-linux-ansible" \
     org.opencontainers.image.title="Ansible" \
     org.opencontainers.image.description="Ansible is a suite of software tools that enables infrastructure as code." \ 
-    org.opencontainers.image.version="11" \
+    org.opencontainers.image.version="12" \
     org.opencontainers.image.documentation="https://docs.ansible.com/"
 
 # Variables d'environnement
