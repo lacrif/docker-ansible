@@ -1,7 +1,7 @@
 # Linux Image Ansible
 
 [![CI](https://github.com/lacrif/docker-ansible/actions/workflows/ci.yml/badge.svg)](https://github.com/lacrif/docker-ansible/actions/workflows/ci.yml) 
-[![Docker pulls](https://img.shields.io/docker/pulls/lacrif/docker-ansible)](https://hub.docker.com/r/lacrif/docker-ansible/)
+[![Docker pulls](https://img.shields.io/docker/pulls/lacrif/ansible)](https://hub.docker.com/r/lacrif/ansible/)
 
 ## Description
 
