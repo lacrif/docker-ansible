@@ -83,6 +83,5 @@ RUN chmod +x /initctl_faker \
     && rm -f /sbin/initctl \
     && ln -s /initctl_faker /sbin/initctl
 
-# Configuration des volumes et CMD (inchangé)
-VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
+# CMD
 CMD ["/lib/systemd/systemd"]
