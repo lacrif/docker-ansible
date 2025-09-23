@@ -12,8 +12,8 @@ jobs:
     runs-on: 'ubuntu-latest'
     strategy:
       matrix:
-        os: ['rockylinux9', 'ubuntu24.04', 'debianbookworm']
-        version: [11, 12]
+        os: ['alpine3.22', 'rockylinux9', 'noble', 'bookworm']
+        version: [11]
     steps:
       - uses: 'actions/checkout@v2'
       - uses: 'docker/setup-qemu-action@v1'
