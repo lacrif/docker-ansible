@@ -31,10 +31,8 @@ RUN apt-get update \
     && rm -rf /tmp/* \
     && rm -rf /var/tmp/*
 
-# # Création de l'utilisateur ansible
-RUN addgroup --gid 1000 ansible && \
-    adduser --uid 1000 --gid 1000 ansible && \
-    # Configuration SSH
+# Création d'un utilisateur non-root pour Ansible
+RUN useradd -m -s /bin/bash ansible && \
     mkdir -p /home/ansible/.ssh && \
     echo -e "Host *\n    StrictHostKeyChecking no\n    UserKnownHostsFile=/dev/null\n    LogLevel ERROR" > /home/ansible/.ssh/config && \
     chmod 700 /home/ansible/.ssh && \
