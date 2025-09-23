@@ -1,35 +1,23 @@
 FROM ubuntu:noble
 
 # Metadata
-LABEL org.opencontainers.image.vendor="Lacrif" \
-    org.opencontainers.image.url="https://docs.ansible.com/" \
-    org.opencontainers.image.source="https://github.com/lacrif/docker-linux-ansible" \
-    org.opencontainers.image.title="Ansible" \
-    org.opencontainers.image.description="Ansible is a suite of software tools that enables infrastructure as code." \ 
-    org.opencontainers.image.version="11" \
-    org.opencontainers.image.documentation="https://docs.ansible.com/"
+LABEL maintainer="Lacrif"
+LABEL description="Ansible is a suite of software tools that enables infrastructure as code."
+LABEL version="11"
 
-# Variables d'environnement
+# Évite les prompts interactifs lors de l'installation
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PYTHONUNBUFFERED=1
 
 # Installation et nettoyage en une seule couche pour minimiser la taille
-RUN apt-get update \
-    # Installation des dépendances minimales
-    && apt-get install -y --no-install-recommends \
-       sudo build-essential wget libffi-dev libssl-dev procps \
-       python3-pip python3-dev python3-setuptools python3-wheel python3-apt \
-       ansible \
-    # Nettoyage complet des caches et fichiers temporaires
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /usr/share/doc \
-    && rm -rf /usr/share/man \
-    && rm -rf /usr/share/info \
-    && rm -rf /usr/share/lintian \
-    && rm -rf /var/cache/debconf \
-    && rm -rf /tmp/* \
-    && rm -rf /var/tmp/*
+RUN apt-get update && \
+    apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    openssh-client \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 # Création d'un utilisateur non-root pour Ansible
 RUN useradd -m -s /bin/bash ansible && \
@@ -39,12 +27,19 @@ RUN useradd -m -s /bin/bash ansible && \
     chmod 600 /home/ansible/.ssh/config && \
     chown -R ansible:ansible /home/ansible
 
-# Répertoire de travail
+# Change vers l'utilisateur ansible
+USER ansible
 WORKDIR /home/ansible
 
-# Utilisateur par défaut
-USER ansible
+# Crée l'environnement virtuel Python
+RUN python3 -m venv /home/ansible/venv
+
+# Active l'environnement virtuel et installe Ansible
+RUN /home/ansible/venv/bin/pip install --upgrade pip && \
+    /home/ansible/venv/bin/pip install ansible~=11.0
+
+# Ajoute le venv au PATH pour faciliter l'utilisation
+ENV PATH="/home/ansible/venv/bin:$PATH"
 
 # Point d'entrée
-ENTRYPOINT []
 CMD ["ansible", "--version"]
