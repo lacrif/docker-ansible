@@ -24,10 +24,8 @@ RUN dnf clean all && \
            /usr/share/doc \
            /usr/share/man
 
-# # Création de l'utilisateur ansible
-RUN groupadd --gid 1000 ansible && \
-    useradd --uid 1000 --gid 1000 ansible && \
-    # Configuration SSH
+# Création d'un utilisateur ansible
+RUN useradd -m -s /bin/bash ansible && \
     mkdir -p /home/ansible/.ssh && \
     echo -e "Host *\n    StrictHostKeyChecking no\n    UserKnownHostsFile=/dev/null\n    LogLevel ERROR" > /home/ansible/.ssh/config && \
     chmod 700 /home/ansible/.ssh && \
