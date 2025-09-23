@@ -10,14 +10,15 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Installation et nettoyage en une seule couche pour minimiser la taille
 RUN apt-get update && \
-    apt-get install -y \
-    python3 \
-    python3-pip \
-    python3-venv \
-    openssh-client \
-    git \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        python3-venv \
+        openssh-client \
+        git \
+        curl \
+        ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
 # Création d'un utilisateur non-root pour Ansible
 RUN useradd -m -s /bin/bash ansible && \
@@ -35,8 +36,8 @@ WORKDIR /home/ansible
 RUN python3 -m venv /home/ansible/venv
 
 # Active l'environnement virtuel et installe Ansible
-RUN /home/ansible/venv/bin/pip install --upgrade pip && \
-    /home/ansible/venv/bin/pip install ansible~=11.0
+RUN /home/ansible/venv/bin/pip install --upgrade pip --no-cache-dir && \
+    /home/ansible/venv/bin/pip install ansible~=11.0 --no-cache-dir
 
 # Ajoute le venv au PATH pour faciliter l'utilisation
 ENV PATH="/home/ansible/venv/bin:$PATH"

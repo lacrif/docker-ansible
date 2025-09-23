@@ -25,7 +25,7 @@ Connaissances de base d'Ansible et Docker
 ### Depuis Docker Hub
 
 ``` bash
-docker pull lacrif/docker-ansible:<version>-<os>
+docker pull lacrif/ansible:<version>-<os>
 ```
 
 Remplacez <version> par la version souhaitée : 11 ou 12
@@ -39,7 +39,7 @@ Remplacez <os> par le système souhaité : rockylinux9, ubuntu24.04
 docker run --detach --privileged \
   --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw \
   --cgroupns=host \
-  lacrif/docker-ansible:<version>-<os>
+  lacrif/ansible:<version>-<os>
 ```
 
 ### Test de rôles Ansible
@@ -51,7 +51,7 @@ docker run --detach --privileged \
   --volume=/sys/fs/cgroup:/sys/fs/cgroup:rw \
   --cgroupns=host \
   --volume="$(pwd)":/etc/ansible/roles/role_under_test:ro \
-  lacrif/docker-ansible:<version>-<os>
+  lacrif/ansible:<version>-<os>
 ```
 
 ### Exécution de commandes Ansible
@@ -87,7 +87,7 @@ docker run -d --privileged \
   --cgroupns=host \
   --volume="$(pwd)/my-role":/etc/ansible/roles/my-role:ro \
   --name ansible-test \
-  lacrif/docker-linux-ansible:latest
+  lacrif/ansible:latest
 
 # 2. Créer un playbook de test simple
 docker exec ansible-test bash -c 'cat > /tmp/test-playbook.yml << EOF
@@ -129,25 +129,16 @@ jobs:
             lacrif/docker-linux-ansible:latest
 ```
 
-### Structure du projet
-
-```
-docker-ansible/
-├── Dockerfile          # Définition de l'image Docker
-├── README.md           # Ce fichier
-├── LICENSE            # Licence du projet
-└── scripts/           # Scripts utilitaires (si présents)
-```
-
 ## Versions supportées
 
 OS :
-- Rocky Linux 9 (version principale)
-- Ubuntu24.04 (version principale)
+- Rocky Linux 9
+- Ubuntu Noble
+- Debian Bookworm
+- Alpine 3.22
 
 Ansible :
 - 11  (dernière version stable)
-- 12
 
 ## Notes
 

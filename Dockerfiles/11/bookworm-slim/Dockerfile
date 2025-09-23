@@ -1,28 +1,26 @@
-FROM rockylinux:9
+FROM debian:bookworm-slim
 
 # Metadata
 LABEL maintainer="Lacrif"
 LABEL description="Ansible is a suite of software tools that enables infrastructure as code."
 LABEL version="11"
 
-# Installation et nettoyage en une seule couche pour minimiser la taille
-RUN dnf install -y epel-release && \
-    dnf update -y && \
-    # Installation des dépendances minimales
-    dnf install -y \
-        python3.12 \
-        python3.12-pip \
-        git && \
-    dnf clean all && \
-    rm -rf /var/cache/dnf/* \
-           /tmp/* \
-           /var/tmp/* \
-           /root/.cache \
-           /root/.local \
-           /usr/share/doc \
-           /usr/share/man
+# Évite les prompts interactifs lors de l'installation
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Création d'un utilisateur ansible
+# Installation et nettoyage en une seule couche pour minimiser la taille
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        python3-venv \
+        openssh-client \
+        git \
+        curl \
+        ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+# Création d'un utilisateur non-root pour Ansible
 RUN useradd -m -s /bin/bash ansible && \
     mkdir -p /home/ansible/.ssh && \
     echo -e "Host *\n    StrictHostKeyChecking no\n    UserKnownHostsFile=/dev/null\n    LogLevel ERROR" > /home/ansible/.ssh/config && \
@@ -35,7 +33,7 @@ USER ansible
 WORKDIR /home/ansible
 
 # Crée l'environnement virtuel Python
-RUN python3.12 -m venv /home/ansible/venv
+RUN python3 -m venv /home/ansible/venv
 
 # Active l'environnement virtuel et installe Ansible
 RUN /home/ansible/venv/bin/pip install --upgrade pip --no-cache-dir && \

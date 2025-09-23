@@ -12,7 +12,7 @@ jobs:
     runs-on: 'ubuntu-latest'
     strategy:
       matrix:
-        os: ['alpine3.22', 'rockylinux9', 'noble', 'bookworm']
+        os: ['alpine3.22', 'rockylinux9', 'noble', 'bookworm', 'bookworm-slim']
         version: [11]
     steps:
       - uses: 'actions/checkout@v2'
